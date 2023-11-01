@@ -5,12 +5,12 @@ CREATE TABLE employees
 	last_name varchar(100),
 	title varchar(100),
 	birth_date varchar(100),
-    notes varchar(100000)
+    notes text
 );
 
 CREATE TABLE customers
 (
-    customer_id varchar(100),
+    customer_id varchar(100) PRIMARY KEY,
     company_name varchar(100),
     contact_name varchar(100)
 );
