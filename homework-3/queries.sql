@@ -5,7 +5,8 @@ SELECT cu.company_name, CONCAT(first_name, ' ', last_name) AS employee_name
 FROM orders o
 JOIN customers cu ON o.customer_id = cu.customer_id
 JOIN employees e ON o.employee_id = e.employee_id
-JOIN shippers s ON cu.city = 'London' AND e.city = 'London' AND s.company_name = 'United Package';
+JOIN shippers s ON o.ship_via = s.shipper_id
+where cu.city = 'London' AND e.city = 'London' AND s.company_name = 'United Package';
 
 
 -- 2. Наименование продукта, количество товара (product_name и units_in_stock в табл products),
