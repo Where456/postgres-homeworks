@@ -7,18 +7,13 @@ ADD CONSTRAINT check_unit_price_positive CHECK (unit_price > 0);
 ALTER TABLE products
 ADD CONSTRAINT check_discontinued CHECK (discontinued = 0 or discontinued = 1);
 -- 3. Создать новую таблицу, содержащую все продукты, снятые с продажи (discontinued = 1)
-CREATE TABLE food
-(
-	student_id serial,
-	products varchar
-);
-INSERT INTO food (student_id, products)
-SELECT student_id, products
+CREATE TABLE food AS
+SELECT *
 FROM products
-WHERE products = '1';
+WHERE discontinued = 1;
 
-ALTER TABLE products
-ADD CONSTRAINT check_discontinued CHECK (products = 1);
+ALTER TABLE food
+ADD CONSTRAINT check_discontinued CHECK (discontinued = 1);
 
 -- 4. Удалить из products товары, снятые с продажи (discontinued = 1)
 -- Для 4-го пункта может потребоваться удаление ограничения, связанного с foreign_key. Подумайте, как это можно решить, чтобы связь с таблицей order_details все же осталась.
